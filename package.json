@@ -1,0 +1,33 @@
+{
+  "name": "magical-motion",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "source": "src/index.js",             
+  "exports": {
+    "require": "./dist/index.cjs",      
+    "default": "./dist/index.modern.js" 
+  },
+  "main": "./dist/index.js",         
+  "module": "./dist/index.module.js",  
+  "unpkg": "./dist/index.umd.js",  
+  "scripts": {
+    "clean":"rm -rf  dist/",
+    "copy":"cp README.md dist",
+    "checkJs": "tsc -p  jsconfig.json",
+    "start": "npm run build && npm publish",
+    "build":"npm run clean && npm run checkJs && npm run copy && microbundle --jsx React.createElement"
+  },
+  "author": "86Magical <86magical@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "microbundle": "^0.15.0",
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "dependencies": {
+    "@types/react": "^18.0.15"
+  }
+}

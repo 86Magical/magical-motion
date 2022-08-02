@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "pretty": true,
+        "checkJs": true,
+        "allowJs": true,
+        "noEmit": false,
+        "outDir": "dist",
+        "jsx": "react-jsx",
+        "declaration": true,
+        "skipLibCheck": true,
+        "importHelpers": true,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "lib": ["DOM","ESNext"],
+        "strictNullChecks": true,
+        "noImplicitReturns": true,
+        "allowUnusedLabels": false,
+        "noUnusedParameters": true,
+        "skipDefaultLibCheck": true,
+        "allowUnreachableCode": false,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+    }
+}
