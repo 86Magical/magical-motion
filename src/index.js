@@ -1,1 +1,2 @@
-export { Motion } from "./components";
+// @ts-ignore
+export { Motion as default} from "./components"

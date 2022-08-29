@@ -1,3 +1,2 @@
-export * from './createMagicalSpring'
-export * from './createMagicalAnimation'
-export * from './setAnimationFrameTimeout'
+export { createMagicalAnimation } from "./createMagicalAnimation";
+export { createMagicalSpring } from "./createMagicalSpring";

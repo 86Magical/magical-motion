@@ -1,1 +1,2 @@
-export { Motion } from "./Motion";
+// @ts-ignore
+export { default } from "./Motion";
