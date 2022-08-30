@@ -1,11 +1,4 @@
-
-
-import "../types";
-/**
- * @function createMagicalSpring
- * @param {SpringProps} props
- * @returns {SpringKeyFrames}
- */
+//@ts-nocheck
 export const createMagicalSpring = ( {
     x = 0,
     y = 0,
@@ -34,7 +27,7 @@ export const createMagicalSpring = ( {
     let velocity_scaleX = 0;
     let velocity_scaleY = 0;
 
-    /** @type {{transform:string}[]} */
+    /** @type {any[]} */
     let keyframes = [];
 
     // frames
@@ -83,7 +76,6 @@ export const createMagicalSpring = ( {
                 }) scaleY(${ scaleY + 1
                 })`,
         } );
-        // @ts-ignore
         keyframes[0].opacity = opacity.from ?? 1
        if(keyframes.length === FPS){
         // only add last keyframe when frames generated are completed

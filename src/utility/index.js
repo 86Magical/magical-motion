@@ -1,3 +1,3 @@
-// @ts-ignore
-export { createMagicalAnimation } from "./createMagicalAnimation";
+
+export { createMagicalSpringAnimation } from "./createMagicalSpringAnimation";
 export { createMagicalSpring } from "./createMagicalSpring";

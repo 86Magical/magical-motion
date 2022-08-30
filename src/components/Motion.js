@@ -1,10 +1,7 @@
+//@ts-nocheck
 import { createElement, memo, useLayoutEffect, useRef } from 'react'
-import { createMagicalAnimation } from '../utility'
-import '../types'
-/**
- * @param {MotionComponentProps} props
- * @returns
- */
+import { createMagicalSpringAnimation } from '../utility'
+
  const Motion =  (
     { as,
         children,
@@ -28,7 +25,6 @@ import '../types'
             opacity:{}
         },
         onFinish,
-        // @ts-ignore
         ...otherProps 
     }
 ) =>
@@ -40,7 +36,7 @@ import '../types'
     useLayoutEffect( () =>
     {
       if(isMountedOnce.current){
-        createMagicalAnimation( motion, {
+        createMagicalSpringAnimation( motion, {
             x: animate.x,
             y: animate.y,
             scale: animate.scale,

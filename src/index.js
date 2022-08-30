@@ -1,1 +1,1 @@
-export { Motion as default} from "./components"
+export { default} from "./components"

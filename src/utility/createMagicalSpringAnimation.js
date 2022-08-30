@@ -1,14 +1,9 @@
-import '../types'
-import React from 'react'
+//@ts-nocheck
 import { createMagicalSpring } from "./createMagicalSpring"
 
 
-/**
- * 
- * @param {React.MutableRefObject<any>} refObject - a ref object
- * @param  {SpringProps &{direction?:PlaybackDirection,delay?:number,repeat?:number| Infinity, onFinish?:(()=>void)}} others - important for spring effect
- */
-export const createMagicalAnimation = ( refObject, others ) =>
+
+export const createMagicalSpringAnimation = ( refObject, others ) =>
 {
 
     let animation = null
