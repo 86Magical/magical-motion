@@ -2,7 +2,6 @@ import { createElement, memo, useLayoutEffect, useRef } from 'react'
 import { createMagicalAnimation } from '../utility'
 import '../types'
 /**
- *
  * @param {MotionComponentProps} props
  * @returns
  */
@@ -69,6 +68,6 @@ import '../types'
     )
 }
 
-const memoMotion = memo(Motion)
+ 
 
-export default memoMotion
+export default memo(Motion)

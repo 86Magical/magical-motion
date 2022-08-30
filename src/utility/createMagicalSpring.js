@@ -83,9 +83,11 @@ export const createMagicalSpring = ( {
                 }) scaleY(${ scaleY + 1
                 })`,
         } );
+        // @ts-ignore
         keyframes[0].opacity = opacity.from ?? 1
        if(keyframes.length === FPS){
         // only add last keyframe when frames generated are completed
+        // @ts-ignore
         keyframes[keyframes.length - 1].opacity = opacity.to ?? 1
        }
     }
