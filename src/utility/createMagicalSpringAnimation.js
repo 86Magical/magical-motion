@@ -1,70 +1,41 @@
 //@ts-nocheck
-import { createMagicalSpring } from "./createMagicalSpring"
+import { createMagicalSpring } from "./createMagicalSpring";
 
-
-
-export const createMagicalSpringAnimation = ( refObject, others ) =>
+export const createMagicalSpringAnimation = (
+  refObject,
+  { initial, animate, configure, transitions, others }
+) =>
 {
+  let animation = null;
 
-    let animation = null
-
-    const { keyframes, frames } = createMagicalSpring( {
-        x: others.x,
-        y: others.y,
-        stiffness: others.stiffness,
-        mass: others.mass,
-        damping: others.damping,
-        scale: others.scale,
-        scaleX: others.scaleX,
-        scaleY: others.scaleY,
-        rotate: others.rotate,
-        FPS: others.FPS,
-        // @ts-ignore
-        opacity:{from:others.opacity.from,to:others.opacity.to}
+  const { keyframes, frames } = createMagicalSpring( {
+    initial,
+    animate,
+    configure: {
+      stiffness: configure.stiffness ?? 100,
+      mass: configure.mass ?? 1,
+      damping: configure.damping ?? 10,
+      FPS: configure.FPS ?? 150,
+    },
+  } );
+  if ( keyframes.length > 0 )
+  {
+    const kfEffect = new KeyframeEffect( refObject.current, keyframes, {
+      duration: ( frames / 60 ) * 1000,
+      fill: "both",
+      easing: "linear",
+      iterations: transitions.repeat,
+      delay: transitions.delay,
+      direction: transitions.direction,
     } );
-    if ( keyframes.length > 0 )
+    animation = new Animation( kfEffect );
+    animation.play();
+    animation.onfinish = function ()
     {
-       
-        const kfEffect = new KeyframeEffect( refObject.current, keyframes, {
-            duration: ( frames / 60 ) * 1000,
-            fill: "both",
-            easing: 'linear',
-            iterations: others.repeat,
-            delay: others.delay,
-            direction: others.direction
-        } );
-        animation = new Animation( kfEffect );
-        animation.play();
-        animation.onfinish = function (  )
-        
-        {
-            // callback when animation finishes
-            others.onFinish && others.onFinish()
-        }
-    }
+      // callback when animation finishes
+      others.onFinish && others.onFinish();
+    };
+  }
 
-    return { animation }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  return { animation };
+};
