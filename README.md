@@ -13,7 +13,7 @@ Install magical-motion with npm
 ```
 or
 
-Install magical-motion with npm 
+Install magical-motion with yarn 
 
 ```bash
   yarn add magical-motion
