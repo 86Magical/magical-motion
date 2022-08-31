@@ -101,7 +101,7 @@ export const Box = () => {
 
 
 ## TODO
-
+- exit animation using `<Precense/>` component
 - ability to pause animation after a certain duration
 - condition to pause animation
 - ability to wait till or wait until a condition is met before render
