@@ -1,4 +1,4 @@
-// https://github.com/chenglou/validCssProps/blob/master/index.js
+//@ts-nocheck
 var cssProp = {
     alignContent: true,
     alignItems: true,

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { isValidCssProp } from "./validCssProp";
 export const createMagicalSpring = ( { initial, animate, configure } ) =>
 {
