@@ -1,1 +1,1 @@
-export {default} from './Motion'
+export { default } from "./Motion";

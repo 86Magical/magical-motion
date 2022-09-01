@@ -1,6 +1,4 @@
-/**
- * @type {any}
- */
+// https://github.com/chenglou/validCssProps/blob/master/index.js
 var cssProp = {
     alignContent: true,
     alignItems: true,
@@ -262,13 +260,8 @@ var cssProp = {
   };
   
   
-  /**
-   * 
-   * @param {any} prop 
-   * @returns 
-   */
   export function isValidCssProp(prop) {
-   const isValid = !!cssProp[prop]
-    return isValid;
+   
+    return !!cssProp[prop];
   }
   

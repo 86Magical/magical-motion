@@ -82,7 +82,7 @@ export const Box = () => {
       FPS: 150
     }}
     transitions={{}}
-    onFinish={()=> console.log(' spring animation completed')}
+    onFinish={undefined}
   >
     
   </Motion>

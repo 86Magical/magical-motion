@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { createMagicalSpring } from "./createMagicalSpring";
 
 export const createMagicalSpringAnimation = (
@@ -12,10 +11,10 @@ export const createMagicalSpringAnimation = (
     initial,
     animate,
     configure: {
-      stiffness: configure.stiffness ?? 100,
-      mass: configure.mass ?? 1,
-      damping: configure.damping ?? 10,
-      FPS: configure.FPS ?? 150,
+      stiffness: configure.stiffness,
+      mass: configure.mass ,
+      damping: configure.damping ,
+      FPS: configure.FPS ,
     },
   } );
   if ( keyframes.length > 0 )
@@ -24,7 +23,7 @@ export const createMagicalSpringAnimation = (
       duration: ( frames / 60 ) * 1000,
       fill: "both",
       easing: "linear",
-      iterations: transitions.repeat,
+      iterations: transitions.repeat ?? 1,
       delay: transitions.delay,
       direction: transitions.direction,
     } );
