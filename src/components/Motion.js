@@ -38,7 +38,7 @@ const Motion = (
                     }
                 }, transitions.waitFor );
             }
-            if ( typeof transitions.waitFor === 'string' )
+            else if ( typeof transitions.waitFor === 'string' )
             {
 
                 timer.current = setInterval( () =>
@@ -51,6 +51,9 @@ const Motion = (
                     }
                 }, 1 );
 
+            }
+            else{
+                setCanMountNow(true)
             }
             if ( canMountNow )
             {
@@ -72,9 +75,7 @@ const Motion = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ canMountNow ] );
     return (
-        <>
-            { canMountNow && createElement( Component, { ref: motion, children, ...otherProps } ) }
-        </>
+        canMountNow && createElement( Component, { ref: motion, children, ...otherProps } ) 
     );
 };
 

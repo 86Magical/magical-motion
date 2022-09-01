@@ -6,7 +6,7 @@
         "allowJs": true,
         "noEmit": false,
         "outDir": "dist",
-        "jsx": "react-jsx",
+        "jsx": "preserve",
         "declaration": true,
         "skipLibCheck": true,
         "importHelpers": true,
