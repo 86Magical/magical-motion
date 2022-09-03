@@ -3,8 +3,8 @@ import { createElement, memo, useLayoutEffect, useRef, useState } from 'react';
 import { createMagicalSpringAnimation } from '../utility';
 const Motion = (
     {
-        as='',
-        children=null,
+        as = '',
+        children = null,
         wait = {},
         transitions = {},
         configure = {},
@@ -25,36 +25,34 @@ const Motion = (
     {
         if ( isMountedOnce.current )
         {
-
-            if ( typeof transitions.waitFor === 'number' )
+            switch ( true )
             {
-                setTimeout( () =>
-                {
-                    setCanMountNow( true );
-                    if ( configure.name )
+                case typeof transitions.waitFor === 'number':
+                    setTimeout( () =>
                     {
-
-                        window[ configure.name ] = configure.name;
-                    }
-                }, transitions.waitFor );
-            }
-            else if ( typeof transitions.waitFor === 'string' )
-            {
-
-                timer.current = setInterval( () =>
-                {
-                    console.log( window[ transitions.waitFor ] );
-                    if ( window[ transitions.waitFor ] )
-                    {
-                        clearInterval( timer.current );
                         setCanMountNow( true );
-                    }
-                }, 1 );
+                        if ( configure.name )
+                        {
 
+                            window[ configure.name ] = configure.name;
+                        }
+                    }, transitions.waitFor );
+                    break;
+                case typeof transitions.waitFor === 'string':
+                    timer.current = setInterval( () =>
+                    {
+                        if ( window[ transitions.waitFor ] )
+                        {
+                            clearInterval( timer.current );
+                            setCanMountNow( true );
+                        }
+                    }, 0 );
+                    break;
+                default:
+                    setCanMountNow( true );
             }
-            else{
-                setCanMountNow(true)
-            }
+
+
             if ( canMountNow )
             {
                 createMagicalSpringAnimation( motion, {
@@ -75,7 +73,7 @@ const Motion = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ canMountNow ] );
     return (
-        canMountNow && createElement( Component, { ref: motion, children, ...otherProps } ) 
+        canMountNow && createElement( Component, { ref: motion, children, ...otherProps } )
     );
 };
 

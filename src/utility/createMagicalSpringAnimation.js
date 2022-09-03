@@ -1,5 +1,6 @@
-// @ts-nocheck
+//@ts-nocheck
 import { createMagicalSpring } from "./createMagicalSpring";
+
 export const createMagicalSpringAnimation = (
   refObject,
   { initial, animate, configure, transitions, others }
