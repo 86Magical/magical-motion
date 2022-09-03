@@ -81,7 +81,7 @@ export const Box = () => {
       damping:10,
       FPS: 150
     }}
-    transitions={{}}
+    transitions={{waitFor:3000,direction:'reverse'}}
     onFinish={undefined}
   >
     
@@ -98,13 +98,15 @@ export const Box = () => {
 - support exit animation state ❌
 - support option to generate more frames ✅
 - support callback function during animation state ✅
+- ability to wait till or wait until a condition is met before render ✅
 
 
 ## TODO
 - exit animation using `<Precense/>` component
 - ability to pause animation after a certain duration
 - condition to pause animation
-- ability to wait till or wait until a condition is met before render
+- support exit animation state
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
