@@ -1,5 +1,12 @@
-//@ts-nocheck
 import { isValidCssProp } from "./validCssProp";
+import '../types';
+
+
+/**
+ * @function createMagicalSpring
+ * @param {createMagicalSpringProp} createMagicalSpringProps
+ * @returns {{frames: number,keyframes: {transform: string}[]}} 
+ */
 export const createMagicalSpring = ( { initial, animate, configure } ) =>
 {
     let {
@@ -14,7 +21,8 @@ export const createMagicalSpring = ( { initial, animate, configure } ) =>
     const spring_length = 0;
     const k = -stiffness;
     const d = -damping;
-    const frame_rate = 1 / 60; // velocity for each parameter 
+    const frame_rate = 1 / 60;
+    // velocity for each parameter 
     let velocity_x = 0;
     let velocity_y = 0;
     let velocity_rotate = 0;
@@ -22,7 +30,8 @@ export const createMagicalSpring = ( { initial, animate, configure } ) =>
     let velocity_scaleX = 0;
     let velocity_scaleY = 0;
     /** @type {{transform:string}[]} */
-    let keyframes = []; // frames 
+    let keyframes = [];
+    // frames 
     let frames = 0;
     while ( frames < FPS )
     {
@@ -67,9 +76,10 @@ export const createMagicalSpring = ( { initial, animate, configure } ) =>
         {
             if ( isValidCssProp( member ) )
             {
-                // we not want to animate css prop that goes from stage A - B
-                // checking if prop from initial is a valid css prop // if true,, apply styles else ignore
-                // el.current.style[member] = initial[member]
+                //we do not want to animate any css prop in initial
+                //we only want it to be the starting point of our animation
+                //eg opacity: 0
+                // @ts-ignore
                 keyframes[ 0 ][ member ] = initial[ member ];
             }
         }
@@ -78,13 +88,12 @@ export const createMagicalSpring = ( { initial, animate, configure } ) =>
             if ( isValidCssProp( member ) )
             {
                 // checking if prop from initial is a valid css prop // if true,, apply styles else ignore
+                // @ts-ignore
                 keyframes[ keyframes.length - 1 ][ member ] = animate[ member ];
             }
 
         }
     }
-    if ( frames === 0 )
-    { frames = 1000; }
     return {
         keyframes,
         frames

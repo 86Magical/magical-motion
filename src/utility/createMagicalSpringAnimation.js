@@ -1,6 +1,13 @@
-//@ts-nocheck
-import { createMagicalSpring } from "./createMagicalSpring";
 
+import { createMagicalSpring } from "./createMagicalSpring";
+import '../types';
+
+/**
+ * 
+ * @param {React.MutableRefObject<any>} refObject 
+ * @param {createMagicalSpringProp & {transitions?:transitionsProp,others?:otherAnimationsProp}} [propObject]
+ * @returns {{animation:Animation | null}}
+ */
 export const createMagicalSpringAnimation = (
   refObject,
   { initial, animate, configure, transitions, others }
@@ -12,10 +19,10 @@ export const createMagicalSpringAnimation = (
     initial,
     animate,
     configure: {
-      stiffness: configure.stiffness,
-      mass: configure.mass ,
-      damping: configure.damping ,
-      FPS: configure.FPS ,
+      stiffness: configure?.stiffness,
+      mass: configure?.mass,
+      damping: configure?.damping,
+      FPS: configure?.FPS,
     },
   } );
   if ( keyframes.length > 0 )
@@ -24,16 +31,16 @@ export const createMagicalSpringAnimation = (
       duration: ( frames / 60 ) * 1000,
       fill: "both",
       easing: "linear",
-      iterations: transitions.repeat ?? 1,
-      delay: transitions.delay,
-      direction: transitions.direction,
+      iterations: transitions?.repeat,
+      delay: transitions?.delay,
+      direction: transitions?.direction,
     } );
     animation = new Animation( kfEffect );
     animation.play();
     animation.onfinish = function ()
     {
       // callback when animation finishes
-      others.onFinish && others.onFinish();
+      others?.onAnimationFinish && others?.onAnimationFinish();
     };
   }
 

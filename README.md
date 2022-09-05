@@ -52,21 +52,21 @@ export const Box = () => {
  </Motion>
 ```
 
-| Parameter | Type     | Description                | Required               |
-| :-------- | :------- | :------------------------- |:------------------------- |
-| `initial` | `object` | the initial state of your animation, accepts any css prop, any properties here reset to animate | **Required**. `false`     |
+| Parameter | Type     | Description                                                                                     | Required              |
+| :-------- | :------- | :---------------------------------------------------------------------------------------------- | :-------------------- |
+| `initial` | `object` | the initial state of your animation, accepts any css prop, any properties here reset to animate | **Required**. `false` |
 
 #### Full Api
 
-| Parameter   | Type     | Description                | Required               |
-| :--------   | :------- | :------------------------- |:------------------------- |
-| `as`   | `string || custom component` | allows to render `<Motion/>` component as any html element or a custom react element                                  |  **Required**. `false`    |
-| `initial`   | `object` | the initial state of your animation, accepts any css prop, any properties here reset to animate prop                                  |  **Required**. `false`    |
-| `animate`   | `object` | from initial state Motion component moves to animate,accepts any css prop, at the end of animation all props are set as default value | **Required**. `false`     |
-| `animate`   | `object` | from initial state Motion component moves to animate,accepts any css prop, at the end of animation all props are set as default value | **Required**. `false`     |
-| `configure` | `object` | controls the feel of `<Motion/>` spring animation like, stiffness,or FPS                                                              | **Required**. `false`     |
-| `transitions` | `object` | controls animation properties like delay before animation start, iterations and direction                                           | **Required**. `false`     |
-| `onFinish` | `function` | a callback function that runs after animation                                           | **Required**. `false`     |
+| Parameter     | Type       | Description                                                                                                                           | Required              |
+| :------------ | :--------- | :------------------------------------------------------------------------------------------------------------------------------------ | :-------------------- |
+| `as`          | `string    |                                                                                                                                       | custom component`     | allows to render `<Motion/>` component as any html element or a custom react element | **Required**. `false` |
+| `initial`     | `object`   | the initial state of your animation, accepts any css prop, any properties here reset to animate prop                                  | **Required**. `false` |
+| `animate`     | `object`   | from initial state Motion component moves to animate,accepts any css prop, at the end of animation all props are set as default value | **Required**. `false` |
+| `animate`     | `object`   | from initial state Motion component moves to animate,accepts any css prop, at the end of animation all props are set as default value | **Required**. `false` |
+| `configure`   | `object`   | controls the feel of `<Motion/>` spring animation like, stiffness,or FPS                                                              | **Required**. `false` |
+| `transitions` | `object`   | controls animation properties like delay before animation start, iterations and direction                                             | **Required**. `false` |
+| `onFinish`    | `function` | a callback function that runs after animation                                                                                         | **Required**. `false` |
 
 #### Default Configuration
 
@@ -81,8 +81,8 @@ export const Box = () => {
       damping:10,
       FPS: 150
     }}
-    transitions={{waitFor:3000,direction:'reverse'}}
-    onFinish={undefined}
+    transitions={{waitFor:undefined,direction:'normal'}}
+    onFinish={()=>null}
   >
     
   </Motion>
@@ -95,6 +95,7 @@ export const Box = () => {
 
 - support initial animation state ✅
 - support rendered animation state ✅
+- typescript support ✅
 - support exit animation state ❌
 - support option to generate more frames ✅
 - support callback function during animation state ✅

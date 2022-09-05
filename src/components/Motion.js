@@ -1,16 +1,21 @@
-//@ts-nocheck
 import { createElement, memo, useLayoutEffect, useRef, useState } from 'react';
 import { createMagicalSpringAnimation } from '../utility';
+import '../types';
+
+/**
+ * 
+ * @param {motionProp & otherAnimationsProp} motionProp 
+ * @returns {React.ReactElement<any, string | React.JSXElementConstructor<any>> | null}
+ */
 const Motion = (
     {
         as = '',
         children = null,
-        wait = {},
         transitions = {},
         configure = {},
         initial = {},
         animate = {},
-        onFinish = () => null,
+        onAnimationFinish = () => null,
         ...otherProps
     }
 ) =>
@@ -20,39 +25,45 @@ const Motion = (
     const isMountedOnce = useRef( false );
     const [ canMountNow, setCanMountNow ] = useState( false );
     const Component = as || 'main';
-    const timer = useRef( null );
+    const timer = useRef( setInterval( () =>
+    {
+
+    } ) );
     useLayoutEffect( () =>
     {
         if ( isMountedOnce.current )
         {
-            switch ( true )
+            switch ( typeof transitions.waitFor )
             {
-                case typeof transitions.waitFor === 'number':
+                case 'number':
                     setTimeout( () =>
                     {
                         setCanMountNow( true );
-                        if ( configure.name )
-                        {
 
-                            window[ configure.name ] = configure.name;
-                        }
                     }, transitions.waitFor );
                     break;
-                case typeof transitions.waitFor === 'string':
-                    timer.current = setInterval( () =>
+                case 'string':
+                    const motionPromise = new Promise( ( resolve ) =>
                     {
-                        if ( window[ transitions.waitFor ] )
+                        timer.current = setInterval( () =>
                         {
-                            clearInterval( timer.current );
-                            setCanMountNow( true );
-                        }
-                    }, 0 );
+                            // @ts-ignore
+                            if ( window[ transitions.waitFor ] )
+                            {
+                                clearInterval( timer.current );
+                                resolve( transitions.waitFor );
+                            }
+                        } );
+
+                    } );
+                    motionPromise.then( () =>
+                    {
+                        setCanMountNow( true );
+                    } );
                     break;
                 default:
                     setCanMountNow( true );
             }
-
-
             if ( canMountNow )
             {
                 createMagicalSpringAnimation( motion, {
@@ -61,9 +72,15 @@ const Motion = (
                     configure,
                     transitions,
                     others: {
-                        onFinish: onFinish,
+                        onAnimationFinish: onAnimationFinish,
                     }
                 } );
+                if ( configure.name )
+                {
+
+                    // @ts-ignore
+                    window[ configure.name ] = configure.name;
+                }
             }
         }
         return () =>
@@ -73,7 +90,7 @@ const Motion = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ canMountNow ] );
     return (
-        canMountNow && createElement( Component, { ref: motion, children, ...otherProps } )
+        canMountNow ? createElement( Component, { ref: motion, children, ...otherProps } ) : null
     );
 };
 
