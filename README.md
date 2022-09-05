@@ -87,7 +87,8 @@ export const Box = () => {
     
   </Motion>
 ```
-
+# Issues
+Please file an issue for bugs or unexpected behavior.
 
 ## Roadmap
 
